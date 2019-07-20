@@ -15,3 +15,4 @@ class Post(models.Model):
 
     # create a string representation
     def __str__(self):
+        return self.title
