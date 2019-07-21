@@ -17,5 +17,13 @@ urlpatterns = [
 
     # 127.0.0.1:8000/post/2/edit ---> Local
     # mydjangosite.com/post/2/edit  --> online
-    path('post/<int:pk>/edit', views.post_edit, name="post_edit")
+    path('post/<int:pk>/edit', views.post_edit, name="post_edit"),
+
+    # 127.0.0.1:8000/drafts ---> Local
+    # mydjangosite.com/drafts  --> online
+    path('drafts/', views.post_draft_list, name="post_draft_list"),
+
+    # 127.0.0.1:8000/post/2/publish ---> Local
+    # mydjangosite.com/post/2/publish  --> online
+    path('post/<int:pk>/publish', views.post_publish, name="post_publish")
 ]
