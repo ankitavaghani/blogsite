@@ -17,7 +17,29 @@ def post_detail(request, pk):
 
 def post_new(request):
     if request.method == 'POST':
+        # print(request)
+        # print(request.method)
+        # print(request.__dict__)
         form = PostForm(request.POST)
+        # print(form)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            # print(post)
+            # print(post.__dict__)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+        stuff_for_frontend = {"form": form}
+        return render(request, 'blog/post_edit.html', stuff_for_frontend)
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -25,6 +47,6 @@ def post_new(request):
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
-        form = PostForm()
+        form = PostForm(instance=post)
         stuff_for_frontend = {"form": form}
         return render(request, 'blog/post_edit.html', stuff_for_frontend)
