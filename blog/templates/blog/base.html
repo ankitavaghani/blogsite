@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CP BLOG</title>
+    <title>{% block title %}{% endblock %}</title>
     <link href="//fonts.googleapis.com/css?Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
@@ -17,6 +17,8 @@
       {% if user.is_authenticated %}
         <a href="{% url 'post_draft_list' %}" class="top-menu"><i class="fab fa-firstdraft fa-2x"></i></a>
         <a href="{% url 'post_new' %}" class="top-menu"><i class="fas fa-plus fa-2x"></i></a>
+      {% else %}
+        <a href="{% url 'login' %}" class="top-menu"><i class="fas fa-sign-in-alt fa-2x"></i></a>
       {% endif %}
 
       <h1><a href="{% url "post_list" %}">Clever Programmer Blog</a></h1>
