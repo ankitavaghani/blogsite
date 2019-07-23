@@ -11,7 +11,7 @@ class Post(models.Model):
 
     def approved_comments(self):
         return self.comments.filter(approved=True)
-        
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
@@ -30,7 +30,6 @@ class Comment(models.Model):
     def approve(self):
         self.approved = True
         self.save()
-
 
     def __str__(self):
         return self.text
