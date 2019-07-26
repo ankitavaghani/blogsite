@@ -27,6 +27,10 @@ urlpatterns = [
     # mydjangosite.com/post/2/publish  --> online
     path('post/<int:pk>/publish', views.post_publish, name="post_publish"),
 
+    # 127.0.0.1:8000/post/2/delete ---> Local
+    # mydjangosite.com/post/2/delete  --> online
+    path('post/<int:pk>/delete/', views.post_delete, name="post_delete"),
+
     # 127.0.0.1:8000/post/2/comment ---> Local
     # mydjangosite.com/post/2/comment  --> online
     path('post/<int:pk>/comment', views.add_comment_to_post, name="add_comment_to_post"),
