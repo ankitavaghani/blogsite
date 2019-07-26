@@ -47,7 +47,7 @@
 
       {% endif %}
       <strong>{{ comment.author }}</strong>
-      <p>{{ comment.text }}</p>
+      <p>{{ comment.text | markdown | safe }}</p>
     </div>
   {% endif %}
 
